@@ -15,6 +15,7 @@ router.get('/donations', transactionController.getDonations);
 router.put('/status',transactionController.updateStatus)
 
 router.delete('/deleteDonation', expenseController.deleteExpense);
+router.get('/allDonations',expenseController.getAllDonations);
 
 router.get('/donar', userController.getUserDetails);
 router.get('/donar/check', userController.checkUserDetails);

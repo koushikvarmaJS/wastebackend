@@ -44,9 +44,28 @@ const createDynamoDbService = () => {
     }
   };
 
+  const getAllDonations = async (donarId) => {
+    try {
+        const params = {
+            TableName: getTableName(),
+            KeyConditionExpression: "donarId = :donarId",
+            ExpressionAttributeValues: {
+                ":donarId": Number(donarId)
+            },
+            ScanIndexForward: false,
+        };
+        const data = await dynamoDbDocClient.query(params).promise();
+        return data.Items;
+    } catch (err) {
+        console.log("Error:", err);
+        throw err;
+    }
+};
+
   return {
     getDynamoDbDocClient,
     deleteExpense,
+    getAllDonations
   };
 };
 

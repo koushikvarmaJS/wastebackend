@@ -15,6 +15,16 @@ const deleteExpense = async (req, res) => {
     }
   };
 
+  const getAllDonations = async (req,res) => {
+    try{
+        const donar = req.query.donar
+        const allDonations =  await dynamoDbService.getAllDonations(donar)
+        res.status(200).json(allDonations)
+    }catch (error) {
+        res.status(500).json({ message: "Error fetching details", error })
+    }
+}
 module.exports = {
-  deleteExpense
+  deleteExpense,
+  getAllDonations
 };
